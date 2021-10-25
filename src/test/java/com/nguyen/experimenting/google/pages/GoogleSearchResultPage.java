@@ -10,6 +10,8 @@ public class GoogleSearchResultPage extends BaseGooglePage {
     private WebElement resultStatus = DriverWrapper.getDriver().findElement(By.id("result-stats"));
     private WebElement pagesNumberNavigation = DriverWrapper.getDriver()
             .findElement(By.xpath("//*[@id='xjs']/table/tbody/tr"));
+    private WebElement inputSearchField = DriverWrapper.getDriver()
+            .findElement(By.xpath("//*[@id='tsf']/div[1]/div[1]/div[2]/div/div[2]/input"));
 
     public String getTitle() {
         return DriverWrapper.getDriver().getTitle();
@@ -17,6 +19,10 @@ public class GoogleSearchResultPage extends BaseGooglePage {
 
     public boolean verifyResultStatus() {
         return resultStatus.isDisplayed();
+    }
+
+    public boolean verifyInputSearchField() {
+        return inputSearchField.isDisplayed();
     }
 
     public boolean verifyPagesNumberNavigator() {

@@ -8,20 +8,15 @@ import org.testng.annotations.Test;
 public class GoogleDoodlePageTest extends SeleniumBaseTest {
 
     @Test
-    public void testPresenceOfSearchFieldOnDoodlePage() {
+    public void testPresenceOfElementsOnDoodlePage() {
 
         boolean searchFieldDisplayed = new GoogleHomeSearchPage()
                 .clickGoogleDoodleBtn()
                 .verifySearchField();
 
         Assert.assertTrue(searchFieldDisplayed);
-    }
-
-    @Test
-    public void testDoodlePageUrl() {
 
         String pageUrl = DriverWrapper.getDriver().getCurrentUrl();
-
-        Assert.assertTrue(pageUrl.contains("doodle"));
+        Assert.assertTrue(pageUrl.contains("doodles"));
     }
 }

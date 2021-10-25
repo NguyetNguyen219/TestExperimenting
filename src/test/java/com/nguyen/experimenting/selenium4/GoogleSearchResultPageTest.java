@@ -1,30 +1,21 @@
 package com.nguyen.experimenting.selenium4;
 
 import com.nguyen.experimenting.google.pages.GoogleHomeSearchPage;
+import com.nguyen.experimenting.google.pages.GoogleSearchResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class GoogleSearchResultPageTest extends SeleniumBaseTest {
 
     @Test
-    public void testPresenceOfResultStatus() {
+    public void testPresentComponentsInResultPage() {
 
-        boolean resultStatusDisplayed = new GoogleHomeSearchPage()
+        GoogleSearchResultPage searchResultPage = new GoogleHomeSearchPage()
                 .setTextToSearchField("pandora")
-                .clickGoogleSearchBtn()
-                .verifyResultStatus();
+                .clickGoogleSearchBtn();
 
-        Assert.assertTrue(resultStatusDisplayed);
-    }
-
-    @Test
-    public void testPresenceOfPagesNumberNavigator() {
-
-        boolean navigatorDisplayed = new GoogleHomeSearchPage()
-                .setTextToSearchField("pandora")
-                .clickGoogleSearchBtn()
-                .verifyPagesNumberNavigator();
-
-        Assert.assertTrue(navigatorDisplayed);
+        Assert.assertTrue(searchResultPage.verifyInputSearchField());
+        Assert.assertTrue(searchResultPage.verifyResultStatus());
+        Assert.assertTrue(searchResultPage.verifyPagesNumberNavigator());
     }
 }
