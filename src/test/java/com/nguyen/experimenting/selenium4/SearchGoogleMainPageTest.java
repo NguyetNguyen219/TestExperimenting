@@ -4,10 +4,10 @@ import com.nguyen.experimenting.google.pages.GoogleHomeSearchPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Selenium4Test extends SeleniumBaseTest {
+public class SearchGoogleMainPageTest extends SeleniumBaseTest {
 
     @Test
-    public void testBasingSearchOnGoogleMainPage() throws InterruptedException {
+    public void testBasingSearchOnGoogleMainPage() {
         String title = new GoogleHomeSearchPage()
                 .setTextToSearchField("Vietnam")
                 .clickGoogleSearchBtn()
