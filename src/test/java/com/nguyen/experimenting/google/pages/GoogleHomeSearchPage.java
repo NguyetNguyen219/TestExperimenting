@@ -6,21 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 public class GoogleHomeSearchPage extends BaseGooglePage {
 
     private WebElement ggSearchField = DriverWrapper.getDriver().findElement(By.xpath("//*[@class='gLFyf gsfi']"));
     private WebElement ggDoodleBtn = DriverWrapper.getDriver().findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[3]/center/input[2]"));
     private WebElement ggSearchBtn = DriverWrapper.getDriver().findElement(By.className("gNO89b"));
 
-    private final WebDriverWait wait = new WebDriverWait(DriverWrapper.getDriver(), 5);
-
-    public void waitForSearchButton() {
+    public void waitForSearchButtonToBeClickable() {
         wait.until(ExpectedConditions.elementToBeClickable(ggSearchBtn));
     }
 
-    public void waitForDoodleButton() {
+    public void waitForDoodleButtonToBeClickable() {
         wait.until(ExpectedConditions.elementToBeClickable(ggDoodleBtn));
     }
 
@@ -35,7 +31,7 @@ public class GoogleHomeSearchPage extends BaseGooglePage {
     public GoogleHomeSearchPage setTextToSearchField(String text) {
         ggSearchField.sendKeys(text);
 
-        waitForSearchButton();
+        waitForSearchButtonToBeClickable();
         return this;
     }
 
@@ -45,7 +41,7 @@ public class GoogleHomeSearchPage extends BaseGooglePage {
     }
 
     public GoogleDoodlesPage clickGoogleDoodleBtn() {
-        waitForDoodleButton();
+        waitForDoodleButtonToBeClickable();
         ggDoodleBtn.click();
 
         return new GoogleDoodlesPage();

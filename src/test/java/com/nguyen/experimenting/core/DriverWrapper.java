@@ -12,7 +12,11 @@ public class DriverWrapper {
     private static WebDriverWait driverWait = null;
 
     private DriverWrapper() {
-        ChromeDriverService service = ChromeDriverService.createServiceWithConfig(new ChromeOptions());
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--lang=es");
+
+        ChromeDriverService service = ChromeDriverService.createServiceWithConfig(options);
+
         driver = new ChromeDriver(service);
     }
 

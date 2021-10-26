@@ -5,7 +5,7 @@ import com.nguyen.experimenting.google.pages.GoogleSearchResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GoogleSearchResultPageTest extends SeleniumBaseTest {
+public class VerifyGoogleSearchResultPageTest extends SeleniumBaseGoogleTest {
 
     @Test
     public void testPresentComponentsInResultPage() {

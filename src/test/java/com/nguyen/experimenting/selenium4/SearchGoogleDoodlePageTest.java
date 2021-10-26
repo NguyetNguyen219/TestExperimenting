@@ -4,7 +4,7 @@ import com.nguyen.experimenting.google.pages.GoogleHomeSearchPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SearchGoogleDoodlePageTest extends SeleniumBaseTest {
+public class SearchGoogleDoodlePageTest extends SeleniumBaseGoogleTest {
 
     @Test
     public void testSearchOnDoodlePage() {

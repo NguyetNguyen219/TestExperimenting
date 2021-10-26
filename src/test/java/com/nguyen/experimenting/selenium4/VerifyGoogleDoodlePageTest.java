@@ -5,7 +5,7 @@ import com.nguyen.experimenting.google.pages.GoogleHomeSearchPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class GoogleDoodlePageTest extends SeleniumBaseTest {
+public class VerifyGoogleDoodlePageTest extends SeleniumBaseGoogleTest {
 
     @Test
     public void testPresenceOfElementsOnDoodlePage() {
