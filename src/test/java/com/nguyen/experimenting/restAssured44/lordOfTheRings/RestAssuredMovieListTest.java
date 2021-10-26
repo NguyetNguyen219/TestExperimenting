@@ -1,6 +1,5 @@
 package com.nguyen.experimenting.restAssured44.lordOfTheRings;
 
-import com.nguyen.experimenting.restAssured44.RestAssuredBaseTest;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
@@ -10,29 +9,29 @@ import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class RestAssuredMovieListTest extends RestAssuredBaseTest {
+public class RestAssuredMovieListTest extends RestAssuredLordOfTheRingBaseTest {
 
-    private RequestSpecBuilder specBuilder = null;
     private Response response = null;
 
-    @BeforeMethod
-    public void setupGet() {
+    private void setup() {
         specBuilder = new RequestSpecBuilder();
         specBuilder.setBaseUri("https://the-one-api.dev/v2")
                 .setBasePath("movie")
                 .addHeader("Authorization", "Bearer xBhaWGa0iqYjMoWKz6O8");
-
-        // Get the response
-        response = RestAssured.given(specBuilder.build()).get();
     }
 
     @Test
     public void testStatusCode() {
+        setup();
+        response = RestAssured.given(specBuilder.build()).get();
+
         Assert.assertEquals(response.statusCode(), 200);
     }
 
     @Test
     public void testNumberOfMovie() {
+        setup();
+        response = RestAssured.given(specBuilder.build()).get();
         log.info("");
 
         response.then().assertThat().log().all().body("total", equalTo(8));
