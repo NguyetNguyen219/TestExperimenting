@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class DriverWrapper {
 
     private static WebDriver driver = null;
-    private static WebDriverWait driverWait = null;
 
     private DriverWrapper() {
         ChromeOptions options = new ChromeOptions();
@@ -21,11 +20,9 @@ public class DriverWrapper {
     }
 
     public static WebDriver getDriver() {
-        if(driver != null) {
-            return driver;
-        } else {
+        if(driver == null) {
             new DriverWrapper();
-            return driver;
         }
+        return driver;
     }
 }

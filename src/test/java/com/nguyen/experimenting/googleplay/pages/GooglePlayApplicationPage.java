@@ -1,6 +1,7 @@
 package com.nguyen.experimenting.googleplay.pages;
 
 import com.nguyen.experimenting.core.DriverWrapper;
+import com.nguyen.experimenting.google.pages.GoogleSearchResultPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -17,11 +18,11 @@ public class GooglePlayApplicationPage extends BaseGooglePlayPage {
         return this;
     }
 
-    public GooglePlayApplicationPage clickSearchButton() {
+    public GooglePlaySearchResultPage clickSearchButton() {
         waitForSearchButtonToBeClickable();
         searchBtn.click();
 
-        return this;
+        return new GooglePlaySearchResultPage();
     }
 
     public GooglePlayApplicationPage clickTopChartsMenuOption() {
