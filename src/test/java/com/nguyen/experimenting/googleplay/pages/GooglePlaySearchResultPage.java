@@ -25,6 +25,10 @@ public class GooglePlaySearchResultPage extends BaseGooglePlayPage {
         return getFirstItemLinkInResultList().getText();
     }
 
+    public String getFilterBoxCurrentOptionName() {
+        return searchFilterDropBox.findElement(By.className("TwyJFf")).getText();
+    }
+
     public GooglePlayApplicationDetailPage clickFirstAppInList() {
         DriverWrapper.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         getFirstItemLinkInResultList().click();
