@@ -1,33 +1,33 @@
 package com.nguyen.experimenting.googleplay.pages;
 
 import com.nguyen.experimenting.core.DriverWrapper;
-import com.nguyen.experimenting.google.pages.GoogleSearchResultPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.concurrent.TimeUnit;
 
 public class GooglePlaySearchResultPage extends BaseGooglePlayPage {
 
-    private WebElement searchFilterDropBox = DriverWrapper.getDriver()
-            .findElement(By.id("action-dropdown-parent-Android apps"));
-    private WebElement firstResultInList = DriverWrapper.getDriver().findElement(By.xpath(
-            "//*[@id='fcxH9b']/div[4]/c-wiz[5]//div[2]//*//c-wiz//div[2]/div[1]/c-wiz//*/div[2]//*/div[1]//*/div[1]/a/div"));
+    private WebElement searchFilterDropBox = DriverWrapper.getDriver().findElement(By
+            .id("action-dropdown-parent-Android apps"));
+
+
+    public WebElement getFirstItemLinkInResultList() {
+        return DriverWrapper.getDriver().findElement(By.xpath(
+                "//div[@class='ZmHEEd ']/div[1]/*/div/*/div[2]/*//*/div[1]/a/div"));
+    }
 
     public String getTitle() {
         return DriverWrapper.getDriver().getTitle();
     }
 
     public String getFirstAppNameInList() {
-        return firstResultInList.getText();
-    }
-
-    public void waitForFirstAppVisibility() {
-        wait.until(ExpectedConditions.visibilityOf(firstResultInList));
+        return getFirstItemLinkInResultList().getText();
     }
 
     public GooglePlayApplicationDetailPage clickFirstAppInList() {
-        waitForFirstAppVisibility();
-        firstResultInList.click();
+        DriverWrapper.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        getFirstItemLinkInResultList().click();
 
         return new GooglePlayApplicationDetailPage();
     }

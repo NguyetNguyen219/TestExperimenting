@@ -1,9 +1,12 @@
 package com.nguyen.experimenting.selenium4;
 
+import com.nguyen.experimenting.core.DriverWrapper;
 import com.nguyen.experimenting.googleplay.pages.GooglePlayHomePage;
 import com.nguyen.experimenting.googleplay.pages.GooglePlaySearchResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.concurrent.TimeUnit;
 
 public class VerifyGooglePlayAppDetailTest extends SeleniumBaseGooglePlayTest {
 
@@ -13,10 +16,10 @@ public class VerifyGooglePlayAppDetailTest extends SeleniumBaseGooglePlayTest {
                 .clickAppsMenuOption()
                 .setTextToSearchField("Monde Ludique")
                 .clickSearchButton();
+
+        DriverWrapper.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         String name = resultPage.getFirstAppNameInList();
 
-        Assert.assertEquals(name, resultPage
-                .clickFirstAppInList()
-                .getAppTitle());
+        Assert.assertEquals(name, resultPage.clickFirstAppInList().getAppTitle());
     }
 }
