@@ -26,7 +26,7 @@ public class RestAssuredBookListTest extends RestAssuredLordOfTheRingBaseTest {
 
     @Test
     public void testNumberOfBook() {
-        log.info("Test number ////*");
+        LOGGER.info("Test number ////*");
 
         setup();
         response = RestAssured.given(specBuilder.build()).get();

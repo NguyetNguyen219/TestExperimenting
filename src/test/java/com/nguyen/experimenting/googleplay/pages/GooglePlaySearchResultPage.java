@@ -1,15 +1,18 @@
 package com.nguyen.experimenting.googleplay.pages;
 
+import com.nguyen.experimenting.BaseTest;
 import com.nguyen.experimenting.core.DriverWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
 public class GooglePlaySearchResultPage extends BaseGooglePlayPage {
 
-    private WebElement searchFilterDropBox = DriverWrapper.getDriver().findElement(By
-            .id("action-dropdown-parent-Android apps"));
+    @FindBy(id = "action-dropdown-parent-Android apps")
+    WebElement searchFilterDropBox;
 
 
     public WebElement getFirstItemLinkInResultList() {
@@ -18,20 +21,25 @@ public class GooglePlaySearchResultPage extends BaseGooglePlayPage {
     }
 
     public String getTitle() {
+        BaseTest.LOGGER.info("Get the page's title");
+
         return DriverWrapper.getDriver().getTitle();
     }
 
     public String getFirstAppNameInList() {
+        BaseTest.LOGGER.info("Get first app name in list");
         return getFirstItemLinkInResultList().getText();
     }
 
     public String getFilterBoxCurrentOptionName() {
+        BaseTest.LOGGER.info("Get current option name in filter box");
         return searchFilterDropBox.findElement(By.className("TwyJFf")).getText();
     }
 
     public GooglePlayApplicationDetailPage clickFirstAppInList() {
-        DriverWrapper.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        getFirstItemLinkInResultList().click();
+        WebElement element = getFirstItemLinkInResultList();
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.click();
 
         return new GooglePlayApplicationDetailPage();
     }

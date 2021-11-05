@@ -26,7 +26,7 @@ public class RestAssuredCharacterListTest extends RestAssuredLordOfTheRingBaseTe
 
     @Test
     public void testNumberOfCharacter() {
-        log.info("");
+        LOGGER.info("");
         setup();
         response = RestAssured.given(specBuilder.build()).get();
         response.then().assertThat().log().body()
@@ -35,7 +35,7 @@ public class RestAssuredCharacterListTest extends RestAssuredLordOfTheRingBaseTe
 
     @Test
     public void testLimitNumberOfCharacter() {
-        log.info("");
+        LOGGER.info("");
 
         setup();
         response = RestAssured.given(specBuilder.build()).get();

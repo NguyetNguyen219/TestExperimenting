@@ -7,25 +7,22 @@ import com.nguyen.experimenting.googleplay.pages.GooglePlaySearchResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 public class VerifyGooglePlayAppDetailTest extends SeleniumBaseGooglePlayTest {
 
     @Test
-    public void testGooglePlayAppName() {
+    public void testGooglePlayAppName() throws InterruptedException {
         GooglePlaySearchResultPage resultPage = new GooglePlayHomePage()
                 .clickAppsMenuOption()
                 .setTextToSearchField("Monde Ludique")
                 .clickSearchButton();
 
-        DriverWrapper.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         String name = resultPage.getFirstAppNameInList();
 
         Assert.assertEquals(name, resultPage.clickFirstAppInList().getAppTitle());
     }
 
-    @Test
-    public void testGooglePlayAppPageUrl() {
+    @Test(testName = "test-search-page")
+    public void testGooglePlayAppPageUrl() throws InterruptedException {
         GooglePlayApplicationDetailPage resultPage = new GooglePlayHomePage()
                 .clickAppsMenuOption()
                 .setTextToSearchField("Monde Ludique")

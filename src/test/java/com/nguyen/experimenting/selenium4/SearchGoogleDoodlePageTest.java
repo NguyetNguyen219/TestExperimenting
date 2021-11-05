@@ -8,6 +8,7 @@ public class SearchGoogleDoodlePageTest extends SeleniumBaseGoogleTest {
 
     @Test
     public void testSearchOnDoodlePage() {
+        LOGGER.info("Start the test.");
         String searchStr = "halloween";
 
         String resName = new GoogleHomeSearchPage()
@@ -17,7 +18,8 @@ public class SearchGoogleDoodlePageTest extends SeleniumBaseGoogleTest {
                 .getFirstElementNameInArchiveList();
 
         Assert.assertTrue(resName
-                    .toLowerCase()
+                    .toLowerCase() // not good
                     .contains(searchStr));
+        LOGGER.info("Finish.");
     }
 }

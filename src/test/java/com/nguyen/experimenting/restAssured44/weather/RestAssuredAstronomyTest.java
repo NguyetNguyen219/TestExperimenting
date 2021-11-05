@@ -29,6 +29,7 @@ public class RestAssuredAstronomyTest extends RestAssuredWeatherBaseTest {
     public void testStatusCode() {
         response = RestAssured.given(specBuilder.build()).get("/astronomy.json");
         Assert.assertEquals(response.statusCode(), 200); //OK
+
     }
 
     @Test

@@ -1,16 +1,20 @@
 package com.nguyen.experimenting.google.pages;
 
+import com.nguyen.experimenting.BaseTest;
 import com.nguyen.experimenting.core.DriverWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleHomeSearchPage extends BaseGooglePage {
 
-    private WebElement ggSearchField = DriverWrapper.getDriver().findElement(By.xpath("//*[@class='gLFyf gsfi']"));
-    private WebElement ggDoodleBtn = DriverWrapper.getDriver().findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[3]/center/input[2]"));
-    private WebElement ggSearchBtn = DriverWrapper.getDriver().findElement(By.className("gNO89b"));
+    @FindBy(xpath = "//*[@class='gLFyf gsfi']")
+    WebElement ggSearchField;
+    @FindBy(xpath = "//body/div[1]/div[3]/form/div[1]/div[1]/div[3]/center/input[2]")
+    WebElement ggDoodleBtn;
+    @FindBy(xpath = "//div[@class = 'FPdoLc lJ9FBc']//input[1]")
+    WebElement ggSearchBtn;
 
     public void waitForSearchButtonToBeClickable() {
         wait.until(ExpectedConditions.elementToBeClickable(ggSearchBtn));
@@ -21,14 +25,17 @@ public class GoogleHomeSearchPage extends BaseGooglePage {
     }
 
     public boolean verifySearchMainButton() {
+        BaseTest.LOGGER.info("Verify if the search button is display");
         return ggSearchBtn.isDisplayed();
     }
 
     public boolean verifySearchMainField() {
+        BaseTest.LOGGER.info("Verify if the search field is display");
         return ggSearchField.isDisplayed();
     }
 
     public GoogleHomeSearchPage setTextToSearchField(String text) {
+        BaseTest.LOGGER.info("Write '"+ text+ "' in the search field");
         ggSearchField.sendKeys(text);
 
         waitForSearchButtonToBeClickable();
@@ -36,11 +43,14 @@ public class GoogleHomeSearchPage extends BaseGooglePage {
     }
 
     public GoogleSearchResultPage clickGoogleSearchBtn() {
+        BaseTest.LOGGER.info("Click search button");
+
         ggSearchBtn.click();
         return new GoogleSearchResultPage();
     }
 
     public GoogleDoodlesPage clickGoogleDoodleBtn() {
+        BaseTest.LOGGER.info("Click Google doodle button");
         waitForDoodleButtonToBeClickable();
         ggDoodleBtn.click();
 

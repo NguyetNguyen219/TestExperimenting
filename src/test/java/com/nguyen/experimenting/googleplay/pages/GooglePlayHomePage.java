@@ -1,16 +1,14 @@
 package com.nguyen.experimenting.googleplay.pages;
 
-import com.nguyen.experimenting.core.DriverWrapper;
-import org.openqa.selenium.By;
+import com.nguyen.experimenting.BaseTest;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.concurrent.TimeUnit;
 
 public class GooglePlayHomePage extends BaseGooglePlayPage {
 
-    private WebElement appMenuOption = DriverWrapper.getDriver()
-            .findElement(By.xpath("//*[@id='fcxH9b']/div[1]/c-wiz[1]/*/li[2]/a"));
+    @FindBy(xpath = "//*[@id='fcxH9b']/div[1]/c-wiz[1]/*/li[2]/a")
+    WebElement appMenuOption;
 
     public void waitForAppsMenuOption() {
         wait.until(ExpectedConditions.elementToBeClickable(appMenuOption));
@@ -19,8 +17,8 @@ public class GooglePlayHomePage extends BaseGooglePlayPage {
     public GooglePlayApplicationPage clickAppsMenuOption() {
         waitForAppsMenuOption();
         appMenuOption.click();
+        BaseTest.LOGGER.info("Click the app menu option");
 
-        DriverWrapper.getDriver().manage().timeouts().implicitlyWait(1200, TimeUnit.MILLISECONDS);
         return new GooglePlayApplicationPage();
     }
 }

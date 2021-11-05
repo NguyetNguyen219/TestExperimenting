@@ -1,15 +1,16 @@
 package com.nguyen.experimenting.googleplay.pages;
 
-import com.nguyen.experimenting.core.DriverWrapper;
-import org.openqa.selenium.By;
+import com.nguyen.experimenting.BaseTest;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class GooglePlayApplicationDetailPage extends BaseGooglePlayPage {
 
-    WebElement appTitle = DriverWrapper.getDriver().findElement(By
-            .xpath("//div[@class='D0ZKYe']/div/div/c-wiz[1]//span"));
+    @FindBy(xpath = "//div[@class='D0ZKYe ']/div/div/c-wiz[1]//span")
+    WebElement appTitle;
 
     public String getAppTitle() {
+        BaseTest.LOGGER.info("Get the current title");
         return appTitle.getText();
     }
 }

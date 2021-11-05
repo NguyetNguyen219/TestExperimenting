@@ -8,8 +8,8 @@ public class SearchGooglePlayAppTest extends SeleniumBaseGooglePlayTest {
 
     private String appName = "Monde Ludique";
 
-    @Test
-    public void testSearchTitleOnGooglePlayApps() {
+    @Test(description = "Search an application and check the title of web", priority = 0)
+    public void testSearchTitleOnGooglePlayApps() throws InterruptedException {
         String title = new GooglePlayHomePage()
                 .clickAppsMenuOption()
                 .setTextToSearchField(appName)
@@ -19,8 +19,8 @@ public class SearchGooglePlayAppTest extends SeleniumBaseGooglePlayTest {
         Assert.assertTrue(title.contains(appName));
     }
 
-    @Test
-    public void testSearchFilterOptionOnGooglePlayApps() {
+    @Test(priority = 1)
+    public void testSearchFilterOptionOnGooglePlayApps() throws InterruptedException {
         String filterCurrentOptionName = new GooglePlayHomePage()
                 .clickAppsMenuOption()
                 .setTextToSearchField(appName)

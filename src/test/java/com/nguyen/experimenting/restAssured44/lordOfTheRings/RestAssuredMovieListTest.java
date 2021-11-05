@@ -4,7 +4,6 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.Matchers.equalTo;
@@ -32,7 +31,7 @@ public class RestAssuredMovieListTest extends RestAssuredLordOfTheRingBaseTest {
     public void testNumberOfMovie() {
         setup();
         response = RestAssured.given(specBuilder.build()).get();
-        log.info("");
+        LOGGER.info("");
 
         response.then().assertThat().log().all().body("total", equalTo(8));
     }

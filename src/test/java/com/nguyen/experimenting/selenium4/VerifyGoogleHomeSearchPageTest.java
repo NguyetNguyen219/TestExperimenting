@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class VerifyGoogleHomeSearchPageTest extends SeleniumBaseGoogleTest {
 
     @Test
-    public void testPresenceOfElementsOnDoodlePage() {
+    public void testPresenceOfElementsOnHomePage() {
 
         GoogleHomeSearchPage homeSearchPage = new GoogleHomeSearchPage();
 

@@ -26,7 +26,7 @@ public class RestAssuredBookTest extends RestAssuredLordOfTheRingBaseTest {
 
     @Test
     public void testBookId() {
-        log.info("#&%^(#/");
+        LOGGER.info("#&%^(#/");
 
         setup();
         response = RestAssured.given(specBuilder.build()).get();
@@ -36,7 +36,7 @@ public class RestAssuredBookTest extends RestAssuredLordOfTheRingBaseTest {
 
     @Test
     public void testBookName() {
-        log.info("");
+        LOGGER.info("");
 
         setup();
         response = RestAssured.given(specBuilder.build()).get();
@@ -46,7 +46,7 @@ public class RestAssuredBookTest extends RestAssuredLordOfTheRingBaseTest {
 
     @Test
     public void testBookTotal() {
-        log.info("");
+        LOGGER.info("");
 
         setup();
         response = RestAssured.given(specBuilder.build()).get();
