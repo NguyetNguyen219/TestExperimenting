@@ -9,25 +9,27 @@ import org.testng.annotations.Test;
 
 public class VerifyGooglePlayAppDetailTest extends SeleniumBaseGooglePlayTest {
 
-    @Test
-    public void testGooglePlayAppName() throws InterruptedException {
+    static String title = "Monde Ludique";
+
+    @Test(description = "Test the app's title in list equal with its name in app detail page")
+    public void testGooglePlayAppName() {
         GooglePlaySearchResultPage resultPage = new GooglePlayHomePage()
                 .clickAppsMenuOption()
-                .setTextToSearchField("Monde Ludique")
+                .setTextToSearchField(title)
                 .clickSearchButton();
 
-        String name = resultPage.getFirstAppNameInList();
+        String name = resultPage.getAppNameInListByTitle(title);
 
-        Assert.assertEquals(name, resultPage.clickFirstAppInList().getAppTitle());
+        Assert.assertEquals(name, resultPage.clickAppInListByTitle(title).getAppTitle());
     }
 
-    @Test(testName = "test-search-page")
-    public void testGooglePlayAppPageUrl() throws InterruptedException {
+    @Test(description = "Test if the url of google app page contains the name of that app")
+    public void testGooglePlayAppPageUrl() {
         GooglePlayApplicationDetailPage resultPage = new GooglePlayHomePage()
                 .clickAppsMenuOption()
                 .setTextToSearchField("Monde Ludique")
                 .clickSearchButton()
-                .clickFirstAppInList();
+                .clickAppInListByTitle(title);
 
         Assert.assertTrue(DriverWrapper.getDriver().getCurrentUrl().contains("mondeludique"));
     }

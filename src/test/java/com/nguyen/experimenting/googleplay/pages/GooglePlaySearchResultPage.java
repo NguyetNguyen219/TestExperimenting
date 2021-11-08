@@ -7,37 +7,58 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.concurrent.TimeUnit;
-
+/**
+ * This is Google Play search result page class representation
+ */
 public class GooglePlaySearchResultPage extends BaseGooglePlayPage {
 
     @FindBy(id = "action-dropdown-parent-Android apps")
     WebElement searchFilterDropBox;
 
-
-    public WebElement getFirstItemLinkInResultList() {
-        return DriverWrapper.getDriver().findElement(By.xpath(
-                "//div[@class='ZmHEEd ']/div[1]/*/div/*/div[2]/*//*/div[1]/a/div"));
+    public void waitForSearchFilterDropBoxVisibility() {
+        wait.until(ExpectedConditions.visibilityOf(searchFilterDropBox));
     }
 
+    /**
+     * method finds an item in result list by %title% and return it
+     * @param title - string represent title of an item
+     * @return WebElement
+     */
+    public WebElement getItemLinkInResultListByTitle(String title) {
+        waitForSearchFilterDropBoxVisibility();
+        return DriverWrapper.getDriver().findElement(By.xpath(
+                "//div[@title='" + title + "']"));
+    }
+
+    /**
+     * method returns the title of this page
+     * @return String
+     */
     public String getTitle() {
+        waitForSearchFilterDropBoxVisibility();
         BaseTest.LOGGER.info("Get the page's title");
 
         return DriverWrapper.getDriver().getTitle();
     }
 
-    public String getFirstAppNameInList() {
+    /**
+     * method finds an item in result list by %title% and return its name
+     * @param title - string represent title of an item
+     * @return String name of item
+     */
+    public String getAppNameInListByTitle(String title) {
         BaseTest.LOGGER.info("Get first app name in list");
-        return getFirstItemLinkInResultList().getText();
+        return getItemLinkInResultListByTitle(title).getText();
     }
 
     public String getFilterBoxCurrentOptionName() {
+        waitForSearchFilterDropBoxVisibility();
         BaseTest.LOGGER.info("Get current option name in filter box");
         return searchFilterDropBox.findElement(By.className("TwyJFf")).getText();
     }
 
-    public GooglePlayApplicationDetailPage clickFirstAppInList() {
-        WebElement element = getFirstItemLinkInResultList();
+    public GooglePlayApplicationDetailPage clickAppInListByTitle(String title) {
+        WebElement element = getItemLinkInResultListByTitle(title);
         wait.until(ExpectedConditions.visibilityOf(element));
         element.click();
 

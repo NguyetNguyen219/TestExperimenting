@@ -13,7 +13,7 @@ public class BaseGooglePlayPage {
     @FindBy(id = "gbqfb")
     protected WebElement searchBtn;
 
-    protected final WebDriverWait wait = new WebDriverWait(DriverWrapper.getDriver(), 8);
+    protected final WebDriverWait wait = DriverWrapper.getDriverWait();
 
     public BaseGooglePlayPage() {
         PageFactory.initElements(DriverWrapper.getDriver(), this);

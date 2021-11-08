@@ -5,19 +5,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * This is Google Play home page class representation
+ */
 public class GooglePlayHomePage extends BaseGooglePlayPage {
 
-    @FindBy(xpath = "//*[@id='fcxH9b']/div[1]/c-wiz[1]/*/li[2]/a")
+    @FindBy(xpath = "//li[@class='uQeS5e qKjvAb iZhiic']/a")
     WebElement appMenuOption;
 
-    public void waitForAppsMenuOption() {
+    /**
+     * method wait for Apps option to be clickable
+     */
+    public void waitForAppsMenuOptionToBeClickable() {
         wait.until(ExpectedConditions.elementToBeClickable(appMenuOption));
     }
 
+    /**
+     * method click on Apps option
+     * @return GooglePlayApplicationPage .this
+     */
     public GooglePlayApplicationPage clickAppsMenuOption() {
-        waitForAppsMenuOption();
+        waitForAppsMenuOptionToBeClickable();
         appMenuOption.click();
         BaseTest.LOGGER.info("Click the app menu option");
+
 
         return new GooglePlayApplicationPage();
     }

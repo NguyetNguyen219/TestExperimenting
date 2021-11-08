@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseGooglePage {
 
-    protected final WebDriverWait wait = new WebDriverWait(DriverWrapper.getDriver(), 5);
+    protected final WebDriverWait wait = DriverWrapper.getDriverWait();
 
     public BaseGooglePage() {
         PageFactory.initElements(DriverWrapper.getDriver(), this);

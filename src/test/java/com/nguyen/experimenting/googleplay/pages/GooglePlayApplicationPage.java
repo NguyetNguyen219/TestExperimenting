@@ -5,18 +5,31 @@ import com.nguyen.experimenting.core.DriverWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This is Google Play apps page class representation
+ */
 public class GooglePlayApplicationPage extends BaseGooglePlayPage {
 
-    @FindBy(xpath = "//*[@id='fcxH9b']/div[1]/c-wiz[2]//*//*/div[4]")
+    @FindBy(xpath = "//div[@class='t5eBue ovVTif']/div[4]")
     WebElement topChartsMenuOption;
 
+    public void waitForTopChartOptionVisibility() {
+        wait.until(ExpectedConditions.visibilityOf(topChartsMenuOption));
+    }
+
+    /**
+     * method set %appName% to google play search field
+     *
+     * @param appName - string variable represent the text to send to search field
+     * @return GooglePlayApplicationPage .this
+     */
     public GooglePlayApplicationPage setTextToSearchField(String appName) {
+        waitForTopChartOptionVisibility();
         BaseTest.LOGGER.info("Write '"+ appName+ "' in the search field");
-//        wait.until(ExpectedConditions.)
 
         searchField.sendKeys(appName);
 
