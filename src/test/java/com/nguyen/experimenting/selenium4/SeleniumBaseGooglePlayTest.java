@@ -1,7 +1,6 @@
 package com.nguyen.experimenting.selenium4;
 
 import com.nguyen.experimenting.core.DriverWrapper;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 
